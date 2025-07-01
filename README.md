@@ -12,7 +12,7 @@ To run the calibration program, make sure the following are installed:
 - **Packages** (listed in `requirements.txt`):
   - `pyswmm`
   - `numpy`
-  - `PySimpleGUI`*
+  - `sklearn`
   - `matplotlib`
   - `pandas`
   - `deap`
