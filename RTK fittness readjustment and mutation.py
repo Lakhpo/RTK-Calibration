@@ -10,6 +10,7 @@ import deap
 from deap import base, creator, tools, algorithms
 import sklearn
 from sklearn import metrics
+import os
 
 
 # From_excel_ordinal is used to get the serial date numbers from the input csv file from SSOAP
@@ -44,7 +45,6 @@ def ConvertToLotus(times, _epoch0=datetime(1899, 12, 31)):
 
 def update_rtk_columns(
     new_rtk_list,
-    inp_file_path="C:/Users/chase/Downloads/TEST.inp",
     hydrograph_name="Analysis_2008-03-03",
 ):
     """
@@ -56,7 +56,7 @@ def update_rtk_columns(
         hydrograph_name: name of the hydrograph (e.g., 'RDII_1')
         new_rtk_list: list of (R, T, K) floats; up to 3 triplets
     """
-    with open(inp_file_path, "r") as f:
+    with open(base_inp, "r") as f:
         lines = f.readlines()
 
     updated_lines = []
@@ -98,11 +98,9 @@ def update_rtk_columns(
         else:
             updated_lines.append(line)
 
-    output_path = "C:/Users/chase/Downloads/TESTMODIFIED.inp"
+    output_path = mod_inp
     with open(output_path, "w") as f:
         f.writelines(updated_lines)
-
-    print(f"RTK update complete. Modified file saved as '{output_path}'")
 
 
 def evaluate(individual):
@@ -116,9 +114,7 @@ def evaluate(individual):
     inflows = np.array([])
     times = np.array([])
     # GOES BY SMALLEST AVIALBLE STEP OMEGA LOL
-    with Simulation(
-        "C:/Users/chase/Downloads/TESTMODIFIED.inp", sim_preconfig=sim_confg
-    ) as sim:
+    with Simulation(mod_inp, sim_preconfig=sim_confg) as sim:
         nodes = Nodes(sim)
         for step in sim:
             J1 = nodes["OUT"]
@@ -216,9 +212,7 @@ def displaybest(individual):
     inflows = np.array([])
     times = np.array([])
     # GOES BY SMALLEST AVIALBLE STEP OMEGA LOL
-    with Simulation(
-        "C:/Users/chase/Downloads/TESTMODIFIED.inp", sim_preconfig=sim_confg
-    ) as sim:
+    with Simulation(mod_inp, sim_preconfig=sim_confg) as sim:
         nodes = Nodes(sim)
         for step in sim:
             J1 = nodes["OUT"]
@@ -231,11 +225,13 @@ def displaybest(individual):
     plt.show()
 
 
-df = pd.read_csv(
-    "C:/Users/chase/Documents/GitHub/SSOAP-RTA-Optimization-Tool/ssoapExample/WWFwriteCOR.csv"
-)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+
+df = pd.read_csv(os.path.join(script_dir, "ssoapExample", "WWFwriteCOR.csv"))
+
 Ev = pd.read_csv(
-    "C:/Users/chase/Documents/GitHub/SSOAP-RTA-Optimization-Tool/ssoapExample/EVENTS.txt",
+    os.path.join(script_dir, "ssoapExample", "EVENTS.txt"),
     index_col=False,
     sep=" ",
 )
@@ -243,7 +239,8 @@ toolbox = base.Toolbox()
 # model info
 node_id = ["OUT"]  # Replace with UI
 hydrograph_name = "Analysis_2008-03-03"
-base_inp = "C:/Users/chase/Downloads/TEST.inp"
+base_inp = os.path.join(script_dir, "TEST.inp")
+mod_inp = os.path.join(script_dir, "TESTMODIFIED.inp")
 
 # GA config
 POP_SIZE = 10
@@ -306,7 +303,7 @@ adjEndTime = adjEnd.strftime("%H:%M:%S")
 adjEndDate = adjEnd.strftime("%m-%d-%Y")
 # Because how how For step in Simulation is ran we have to set the start and end time 1 step before and one step after.
 sim_confg = SimulationPreConfig()
-sim_confg.input_file = "C:/Users/chase/Downloads/TEST.inp"
+sim_confg.input_file = base_inp
 # Add start and end times.
 sim_confg.add_update_by_token("OPTIONS", "START_DATE", 1, adjStartDate)
 sim_confg.add_update_by_token("OPTIONS", "START_TIME", 1, adjStartTime)

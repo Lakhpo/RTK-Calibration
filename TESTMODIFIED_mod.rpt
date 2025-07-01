@@ -1,0 +1,52 @@
+
+  EPA STORM WATER MANAGEMENT MODEL - VERSION 5.2 (Build 5.2.4)
+  PYSWMM TOOLKIT API - VERSION v1.0 (2023-11-27)
+  ------------------------------------------------------------
+
+  
+  ****************
+  Analysis Options
+  ****************
+  Flow Units ............... MGD
+  Process Models:
+    Rainfall/Runoff ........ YES
+    RDII ................... YES
+    Snowmelt ............... NO
+    Groundwater ............ NO
+    Flow Routing ........... NO
+    Water Quality .......... NO
+  Surcharge Method ......... EXTRAN
+  Starting Date ............ 03/03/2008 17:30:00
+  Ending Date .............. 03/07/2008 05:30:00
+  Antecedent Dry Days ...... 0.0
+  Report Time Step ......... 00:15:00
+  
+  
+  **********************           Volume        Volume
+  Rainfall Dependent I/I        acre-feet      10^6 gal
+  **********************        ---------     ---------
+  Sewershed Rainfall ......       348.067       113.423
+  RDII Produced ...........         8.145         2.654
+  RDII Ratio ..............         0.023
+  
+  
+  **************************        Volume        Volume
+  Flow Routing Continuity        acre-feet      10^6 gal
+  **************************     ---------     ---------
+  Dry Weather Inflow .......         0.000         0.000
+  Wet Weather Inflow .......         0.000         0.000
+  Groundwater Inflow .......         0.000         0.000
+  RDII Inflow ..............         8.139         2.652
+  External Inflow ..........         0.000         0.000
+  External Outflow .........         8.139         2.652
+  Flooding Loss ............         0.000         0.000
+  Evaporation Loss .........         0.000         0.000
+  Exfiltration Loss ........         0.000         0.000
+  Initial Stored Volume ....         0.000         0.000
+  Final Stored Volume ......         0.000         0.000
+  Continuity Error (%) .....         0.000
+  
+
+  Analysis begun on:  Tue Jul  1 10:21:41 2025
+  Analysis ended on:  Tue Jul  1 10:21:41 2025
+  Total elapsed time: < 1 sec

@@ -1,0 +1,150 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           MGD
+INFILTRATION         HORTON
+FLOW_ROUTING         DYNWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        NO
+SKIP_STEADY_STATE    NO
+
+START_DATE           03/03/2008
+START_TIME           17:45:00
+REPORT_START_DATE    03/03/2008
+REPORT_START_TIME    17:45:00
+END_DATE             03/07/2008
+END_TIME             05:15:00
+SWEEP_START          1/1
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:15:00
+WET_STEP             00:15:00
+DRY_STEP             01:00:00
+ROUTING_STEP         0:15:00 
+RULE_STEP            00:00:00
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         0
+MAX_TRIALS           0
+HEAD_TOLERANCE       0
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.5
+THREADS              1
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+CONSTANT         0.0
+DRY_ONLY         NO
+
+[RAINGAGES]
+;;Name           Format    Interval SCF      Source    
+;;-------------- --------- ------ ------ ----------
+1                VOLUME    0:15     0        TIMESERIES Rainguage_1     
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To        
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+OUT              0          FREE                        NO                       
+
+[DWF]
+;;Node           Constituent      Baseline   Patterns  
+;;-------------- ---------------- ---------- ----------
+OUT              FLOW             0          "" "" ""
+
+[HYDROGRAPHS]
+;;Hydrograph     Rain Gage/Month  Response R        T        K        Dmax     Drecov   Dinit   
+;;-------------- ---------------- -------- -------- -------- -------- -------- -------- --------
+Analysis_2008-03-03 1               
+Analysis_2008-03-03 All              Short    0.014    1.5      4        0        0        0       
+Analysis_2008-03-03 All              Medium   0.0015   2        7        0        0        0       
+Analysis_2008-03-03 All              Long     0.01     7        8        0        0        0       
+
+
+[RDII]
+;;Node           Unit Hydrograph  Sewer Area
+;;-------------- ---------------- ----------
+OUT              Analysis_2008-03-03 2270      
+
+[TIMESERIES]
+;;Name           Date       Time       Value     
+;;-------------- ---------- ---------- ----------
+Rainguage_1      3/3/2008   19:30:00   0.02      
+Rainguage_1      3/3/2008   19:45:00   0.03      
+Rainguage_1      3/3/2008   20:00:00   0.05      
+Rainguage_1      3/3/2008   20:15:00   0.05      
+Rainguage_1      3/3/2008   20:30:00   0.05      
+Rainguage_1      3/3/2008   20:45:00   0.05      
+Rainguage_1      3/3/2008   21:00:00   0.07      
+Rainguage_1      3/3/2008   21:15:00   0.06      
+Rainguage_1      3/3/2008   21:30:00   0.06      
+Rainguage_1      3/3/2008   21:45:00   0.06      
+Rainguage_1      3/3/2008   22:00:00   0.07      
+Rainguage_1      3/3/2008   22:15:00   0.08      
+Rainguage_1      3/3/2008   22:30:00   0.08      
+Rainguage_1      3/3/2008   22:45:00   0.07      
+Rainguage_1      3/3/2008   23:00:00   0.09      
+Rainguage_1      3/3/2008   23:15:00   0.1       
+Rainguage_1      3/3/2008   23:30:00   0.06      
+Rainguage_1      3/3/2008   23:45:00   0.06      
+Rainguage_1      3/4/2008   00:00:00   0.07      
+Rainguage_1      3/4/2008   00:15:00   0.05      
+Rainguage_1      3/4/2008   00:30:00   0.06      
+Rainguage_1      3/4/2008   00:45:00   0.07      
+Rainguage_1      3/4/2008   01:00:00   0.07      
+Rainguage_1      3/4/2008   01:15:00   0.01      
+Rainguage_1      3/4/2008   01:30:00   0.01      
+Rainguage_1      3/4/2008   01:45:00   0.04      
+Rainguage_1      3/4/2008   02:00:00   0.08      
+Rainguage_1      3/4/2008   02:15:00   0.04      
+Rainguage_1      3/4/2008   02:30:00   0.02      
+Rainguage_1      3/4/2008   02:45:00   0.01      
+Rainguage_1      3/4/2008   08:45:00   0.01      
+Rainguage_1      3/4/2008   09:00:00   0.01      
+Rainguage_1      3/4/2008   09:45:00   0.01      
+Rainguage_1      3/4/2008   10:00:00   0.01      
+Rainguage_1      3/4/2008   10:45:00   0.01      
+Rainguage_1      3/4/2008   11:00:00   0.02      
+Rainguage_1      3/4/2008   11:30:00   0.01      
+Rainguage_1      3/7/2008   04:00:00   0.01      
+Rainguage_1      3/7/2008   04:15:00   0.02      
+Rainguage_1      3/7/2008   04:30:00   0.02      
+Rainguage_1      3/7/2008   04:45:00   0.02      
+Rainguage_1      3/7/2008   05:00:00   0.02      
+Rainguage_1      3/7/2008   05:15:00   0.03      
+
+[REPORT]
+;;Reporting Options
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS 0.000 0.000 10000.000 10000.000
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+OUT              5752.747           417.582           
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+[SYMBOLS]
+;;Gage           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+1                7137.363           6659.341          
+
